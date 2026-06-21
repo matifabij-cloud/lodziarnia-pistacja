@@ -102,6 +102,30 @@ const REVIEWS: Review[] = [
 const GOOGLE_REVIEWS_URL =
   "https://www.google.com/maps/search/?api=1&query=Lodziarnia+Pistacja+%C5%81%C3%B3d%C5%BA";
 
+/**
+ * Prawdziwe zdjęcia (pliki w `public/photos/`). Jeśli pliku brakuje, komponent
+ * <Photo> sam pokazuje oznaczony placeholder — strona nigdy nie jest „pusta".
+ * Wgraj 4 pliki o tych nazwach do public/photos/ (patrz public/photos/README.md).
+ */
+const PHOTOS = {
+  lodyKubek: {
+    src: "/photos/lody-kubek.jpg",
+    alt: "Lody jagodowe w kubku i lody w rożku z bitą śmietaną na tle budki Pistacja",
+  },
+  budka: {
+    src: "/photos/budka.jpg",
+    alt: "Różowa budka Lodziarni Pistacja z neonem i obsługą w oknie",
+  },
+  gofr: {
+    src: "/photos/gofr.jpg",
+    alt: "Gofr z truskawkami, kiwi, gruszką i bitą śmietaną na papierowej tacce",
+  },
+  lodyRozek: {
+    src: "/photos/lody-rozek.jpg",
+    alt: "Lody w rożku — śmietankowe i mango — trzymane przed budką",
+  },
+} as const;
+
 /* ────────────────────────────────────────────────────────────────────────────
    POMOCNICZE
    ──────────────────────────────────────────────────────────────────────────── */
@@ -287,6 +311,35 @@ function PhotoPlaceholder({
       <ImageIcon className="h-8 w-8 text-pistachio-400" />
       <span className="text-sm font-medium text-ink-muted">[{label}]</span>
     </div>
+  );
+}
+
+/** Prawdziwe zdjęcie z lazy-loadingiem; przy braku pliku (404) wraca do placeholdera. */
+function Photo({
+  src,
+  alt,
+  label,
+  ratio = "aspect-[4/3]",
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  label: string;
+  ratio?: string;
+  className?: string;
+}) {
+  const [failed, setFailed] = useState(false);
+  if (failed)
+    return <PhotoPlaceholder label={label} ratio={ratio} className={className} />;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      onError={() => setFailed(true)}
+      className={`${ratio} ${className} w-full rounded-2xl object-cover shadow-sm`}
+    />
   );
 }
 
@@ -554,10 +607,10 @@ export default function LodziarniaPistacja() {
             </div>
 
             <div className="relative">
-              <PhotoPlaceholder label="zdjęcie lodów Pistacja" ratio="aspect-[4/3]" className="shadow-sm" />
+              <Photo {...PHOTOS.lodyKubek} label="zdjęcie lodów Pistacja" ratio="aspect-[4/3]" />
               <div className="mt-3 grid grid-cols-2 gap-3">
-                <PhotoPlaceholder label="zdjęcie gofra" ratio="aspect-square" />
-                <PhotoPlaceholder label="zdjęcie budki" ratio="aspect-square" />
+                <Photo {...PHOTOS.gofr} label="zdjęcie gofra" ratio="aspect-square" />
+                <Photo {...PHOTOS.budka} label="zdjęcie budki" ratio="aspect-square" />
               </div>
             </div>
           </div>
@@ -656,19 +709,20 @@ export default function LodziarniaPistacja() {
                   <span className="font-semibold text-pistachio-700">pistacja</span> oraz{" "}
                   <span className="font-semibold text-pistachio-700">ricotta z marakują</span>.
                 </p>
-                <p className="mt-3 text-ink-muted">
-                  Spora porcja w normalnej cenie — według opinii klientów już od
-                  ok. 8 zł.
+                <p className="mt-3 text-ink">
+                  Spora porcja lodów za{" "}
+                  <span className="font-semibold text-pistachio-700">8 zł</span> — w
+                  normalnej cenie, jak chwalą w opiniach.
                 </p>
                 <p className="mt-4 inline-flex rounded-lg bg-cream-100 px-3 py-2 text-sm text-ink-muted">
-                  [Pełne menu i ceny do potwierdzenia z właścicielem]
+                  [Pełne menu i pozostałe ceny do potwierdzenia z właścicielem]
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <PhotoPlaceholder label="zdjęcie lodów" ratio="aspect-square" />
-                <PhotoPlaceholder label="zdjęcie gofrów" ratio="aspect-square" />
+                <Photo {...PHOTOS.lodyKubek} label="zdjęcie lodów" ratio="aspect-square" />
+                <Photo {...PHOTOS.gofr} label="zdjęcie gofrów" ratio="aspect-square" />
+                <Photo {...PHOTOS.lodyRozek} label="zdjęcie lodów w rożku" ratio="aspect-square" />
                 <PhotoPlaceholder label="zdjęcie kawy" ratio="aspect-square" />
-                <PhotoPlaceholder label="zdjęcie smaku pistacja" ratio="aspect-square" />
               </div>
             </div>
           </div>
@@ -725,6 +779,12 @@ export default function LodziarniaPistacja() {
               [Krótka historia marki do uzupełnienia z właścicielem — kto prowadzi,
               od kiedy, co was wyróżnia.]
             </p>
+            <Photo
+              {...PHOTOS.budka}
+              label="zdjęcie budki Pistacja"
+              ratio="aspect-[16/10]"
+              className="mt-6 max-w-md"
+            />
           </div>
         </section>
       </main>

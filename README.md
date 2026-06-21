@@ -31,6 +31,8 @@ Opinie · O nas · Stopka + finalne CTA, plus mobilny sticky pasek „Trasa / Za
 - **„Wyznacz trasę"** → Google Maps (`dir/?api=1&destination=<adres>`), zawsze z pełnego,
   dokładnego adresu.
 - **„Zadzwoń"** → `tel:` (klikalne na telefonie) — tam, gdzie mamy potwierdzony numer.
+- **Zdjęcia** — komponent `<Photo>` ładuje pliki z `public/photos/` (lazy-load, `object-cover`),
+  a przy braku pliku pokazuje oznaczony placeholder. Patrz `public/photos/README.md`.
 
 ## ⚠️ Placeholdery do potwierdzenia z klientem
 
@@ -38,8 +40,8 @@ Zgodnie z zasadą uczciwości użyto **wyłącznie** danych i cytatów z briefu.
 
 | Element | Status |
 |---|---|
-| **Zdjęcia** (lody, gofry, kawa, budki) | oznaczone sloty `[zdjęcie …]` — brak realnych zdjęć |
-| **Pełne menu i ceny** | `[do potwierdzenia]` — cena „od ok. 8 zł" pochodzi z jednej opinii |
+| **Zdjęcia** (lody, gofry, budka) | kod gotowy — wgraj 4 pliki do `public/photos/` (patrz `public/photos/README.md`); zdjęcie kawy nadal placeholder |
+| **Pełne menu** | `[do potwierdzenia]` — pozycje menu do uzupełnienia (cena porcji lodów **8 zł** potwierdzona) |
 | **Telefony: Radogoszcz, Retkinia** | `[do potwierdzenia]` — potwierdzony tylko numer do Łagiewnik |
 | **„O nas" / historia marki** | `[do uzupełnienia z właścicielem]` — brak zmyślonej historii |
 | **Social media** (Instagram, Facebook) | `[do potwierdzenia]` — placeholdery w stopce |
