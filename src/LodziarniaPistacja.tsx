@@ -186,6 +186,15 @@ const prefersReducedMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
+/** Pozycje nawigacji w pasku górnym — wszystkie sekcje strony. */
+const NAV_LINKS: { id: string; label: string }[] = [
+  { id: "lokalizacje", label: "Lokalizacje" },
+  { id: "menu", label: "Menu" },
+  { id: "opinie", label: "Opinie" },
+  { id: "o-nas", label: "O nas" },
+  { id: "kontakt", label: "Kontakt" },
+];
+
 const scrollToId = (id: string) => {
   const el = document.getElementById(id);
   if (!el) return;
@@ -530,21 +539,54 @@ export default function LodziarniaPistacja() {
     <div className="min-h-dvh bg-cream-50 font-body text-ink antialiased">
       {/* Pasek górny */}
       <header className="sticky top-0 z-40 border-b border-pistachio-100/70 bg-cream-50/85 backdrop-blur supports-[backdrop-filter]:bg-cream-50/70">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
-          <a href="#top" className="flex items-center gap-2 font-display text-xl font-semibold text-pistachio-700">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+          <a href="#top" className="flex shrink-0 items-center gap-2 font-display text-xl font-semibold text-pistachio-700">
             <span className="grid h-8 w-8 place-items-center rounded-full bg-pistachio-600 text-white">
               <StarIcon className="h-4 w-4" />
             </span>
             Pistacja
           </a>
+
+          {/* Nawigacja po wszystkich sekcjach (desktop) */}
+          <nav aria-label="Sekcje strony" className="hidden items-center gap-1 md:flex">
+            {NAV_LINKS.map((link) => (
+              <button
+                key={link.id}
+                type="button"
+                onClick={() => scrollToId(link.id)}
+                className="rounded-lg px-3 py-2 text-sm font-semibold text-pistachio-700 outline-none transition-colors hover:bg-pistachio-50 focus-visible:ring-2 focus-visible:ring-pistachio-600"
+              >
+                {link.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* CTA skrótowy (mobile) — prowadzi do listy budek */}
           <button
             type="button"
             onClick={() => scrollToId("lokalizacje")}
-            className="rounded-lg px-3 py-2 text-sm font-semibold text-pistachio-700 outline-none transition-colors hover:bg-pistachio-50 focus-visible:ring-2 focus-visible:ring-pistachio-600"
+            className="rounded-lg px-3 py-2 text-sm font-semibold text-pistachio-700 outline-none transition-colors hover:bg-pistachio-50 focus-visible:ring-2 focus-visible:ring-pistachio-600 md:hidden"
           >
             Lokalizacje
           </button>
         </div>
+
+        {/* Nawigacja po sekcjach — pasek przewijany (mobile/tablet) */}
+        <nav
+          aria-label="Sekcje strony"
+          className="flex gap-1 overflow-x-auto border-t border-pistachio-100/70 px-4 py-2 sm:px-6 md:hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {NAV_LINKS.map((link) => (
+            <button
+              key={link.id}
+              type="button"
+              onClick={() => scrollToId(link.id)}
+              className="shrink-0 rounded-full bg-pistachio-50 px-3 py-1.5 text-sm font-semibold text-pistachio-700 outline-none transition-colors hover:bg-pistachio-100 focus-visible:ring-2 focus-visible:ring-pistachio-600"
+            >
+              {link.label}
+            </button>
+          ))}
+        </nav>
       </header>
 
       <main id="top">
@@ -628,7 +670,7 @@ export default function LodziarniaPistacja() {
         </section>
 
         {/* 3. LOKALIZACJE — serce strony */}
-        <section id="lokalizacje" ref={locationsRef} className="scroll-mt-20" aria-labelledby="loc-title">
+        <section id="lokalizacje" ref={locationsRef} className="scroll-mt-32 md:scroll-mt-20" aria-labelledby="loc-title">
           <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
@@ -683,7 +725,7 @@ export default function LodziarniaPistacja() {
         </section>
 
         {/* 4. MENU (zajawka) */}
-        <section aria-labelledby="menu-title" className="bg-pistachio-50">
+        <section id="menu" aria-labelledby="menu-title" className="scroll-mt-32 bg-pistachio-50 md:scroll-mt-20">
           <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
             <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
               <div>
@@ -720,7 +762,7 @@ export default function LodziarniaPistacja() {
         </section>
 
         {/* 5. OPINIE */}
-        <section aria-labelledby="reviews-title" className="bg-cream-100">
+        <section id="opinie" aria-labelledby="reviews-title" className="scroll-mt-32 bg-cream-100 md:scroll-mt-20">
           <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
             <h2 id="reviews-title" className="font-display text-3xl font-bold text-pistachio-700 sm:text-4xl">
               Co mówią klienci
@@ -756,32 +798,35 @@ export default function LodziarniaPistacja() {
         </section>
 
         {/* 6. O NAS */}
-        <section aria-labelledby="about-title" className="bg-pistachio-50">
-          <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-16">
-            <h2 id="about-title" className="font-display text-3xl font-bold text-pistachio-700 sm:text-4xl">
-              O nas
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-ink">
-              Pistacja to lokalna lodziarnia z Łodzi — trzy budki prowadzone z myślą
-              o świeżych, naturalnych lodach i miłej obsłudze, którą klienci doceniają
-              w opiniach.
-            </p>
-            <p className="mt-4 rounded-xl border border-dashed border-pistachio-200 bg-white px-4 py-3 text-ink-muted">
-              [Krótka historia marki do uzupełnienia z właścicielem — kto prowadzi,
-              od kiedy, co was wyróżnia.]
-            </p>
-            <Photo
-              {...PHOTOS.budka}
-              label="zdjęcie budki Pistacja"
-              ratio="aspect-[16/10]"
-              className="mt-6 max-w-md"
-            />
+        <section id="o-nas" aria-labelledby="about-title" className="scroll-mt-32 bg-pistachio-50 md:scroll-mt-20">
+          <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
+            <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
+              <div>
+                <h2 id="about-title" className="font-display text-3xl font-bold text-pistachio-700 sm:text-4xl">
+                  O nas
+                </h2>
+                <p className="mt-4 text-lg leading-relaxed text-ink">
+                  Pistacja to lokalna lodziarnia z Łodzi — trzy budki prowadzone z myślą
+                  o świeżych, naturalnych lodach i miłej obsłudze, którą klienci doceniają
+                  w opiniach.
+                </p>
+                <p className="mt-4 rounded-xl border border-dashed border-pistachio-200 bg-white px-4 py-3 text-ink-muted">
+                  [Krótka historia marki do uzupełnienia z właścicielem — kto prowadzi,
+                  od kiedy, co was wyróżnia.]
+                </p>
+              </div>
+              <Photo
+                {...PHOTOS.budka}
+                label="zdjęcie budki Pistacja"
+                ratio="aspect-[16/10]"
+              />
+            </div>
           </div>
         </section>
       </main>
 
       {/* 7. STOPKA + FINALNE CTA */}
-      <footer className="border-t border-pistachio-100 bg-white">
+      <footer id="kontakt" className="scroll-mt-32 border-t border-pistachio-100 bg-white md:scroll-mt-20">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
           <p className="font-display text-2xl font-semibold text-pistachio-700">
             Świeże lody, gofry i kawa — w trzech miejscach w Łodzi.
