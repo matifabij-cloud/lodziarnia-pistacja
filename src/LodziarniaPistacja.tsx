@@ -290,7 +290,8 @@ function StatusBadge({ status }: { status: Status }) {
   );
 }
 
-/** Wyraźnie oznaczony slot na zdjęcie — nie generujemy fałszywych zdjęć. */
+/** Wyraźnie oznaczony slot na zdjęcie — nie generujemy fałszywych zdjęć.
+ *  Używany też jako fallback w <Photo>, gdy pliku brakuje. */
 function PhotoPlaceholder({
   label,
   className = "",
@@ -604,10 +605,6 @@ export default function LodziarniaPistacja() {
 
             <div className="relative">
               <Photo {...PHOTOS.lodyKubek} label="zdjęcie lodów Pistacja" ratio="aspect-[4/3]" />
-              <div className="mt-3 grid grid-cols-2 gap-3">
-                <Photo {...PHOTOS.gofr} label="zdjęcie gofra" ratio="aspect-square" />
-                <Photo {...PHOTOS.budka} label="zdjęcie budki" ratio="aspect-square" />
-              </div>
             </div>
           </div>
         </section>
@@ -715,10 +712,8 @@ export default function LodziarniaPistacja() {
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <Photo {...PHOTOS.lodyKubek} label="zdjęcie lodów" ratio="aspect-square" />
-                <Photo {...PHOTOS.gofr} label="zdjęcie gofrów" ratio="aspect-square" />
+                <Photo {...PHOTOS.gofr} label="zdjęcie gofra" ratio="aspect-square" />
                 <Photo {...PHOTOS.lodyRozek} label="zdjęcie lodów w rożku" ratio="aspect-square" />
-                <PhotoPlaceholder label="zdjęcie kawy" ratio="aspect-square" />
               </div>
             </div>
           </div>
