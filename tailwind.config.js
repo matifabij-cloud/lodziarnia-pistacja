@@ -22,24 +22,13 @@ export default {
           700: "#37591F", // nagłówki / mocny tekst
           800: "#2B481D",
         },
-        // Akcent owocowy — malina
+        // Akcent owocowy — malina (przyciski „Zadzwoń", plakietki, akcenty)
         raspberry: {
-          50: "#FDF1F5",
           100: "#FBE3EA",
-          200: "#F5C6D4",
           400: "#E36B8A",
           500: "#BE2F58", // akcent CTA (biały tekst, WCAG AA)
           600: "#A52949",
           700: "#86203B",
-        },
-        // Akcent owocowy — jagoda (fioletowe lody)
-        blueberry: {
-          50: "#F2F0FB",
-          100: "#E3DDF6",
-          200: "#C9BEEE",
-          500: "#6D4AA7",
-          700: "#4A3287", // nagłówki / mocny tekst (WCAG AA na jasnym tle)
-          800: "#3A2769",
         },
         // Tekst — ciepły grafit
         ink: {

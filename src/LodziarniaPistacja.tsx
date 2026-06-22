@@ -553,7 +553,6 @@ export default function LodziarniaPistacja() {
         <section className="relative overflow-hidden" aria-labelledby="hero-title">
           <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-pistachio-100/70 blur-2xl" aria-hidden="true" />
           <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-raspberry-100/60 blur-2xl" aria-hidden="true" />
-          <div className="pointer-events-none absolute left-1/3 top-1/3 h-44 w-44 rounded-full bg-blueberry-100/50 blur-2xl" aria-hidden="true" />
           <div className="relative mx-auto grid max-w-5xl gap-8 px-4 pb-10 pt-10 sm:px-6 md:grid-cols-2 md:items-center md:gap-10 md:pb-16 md:pt-16">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-semibold text-pistachio-700 shadow-sm ring-1 ring-pistachio-100">
@@ -691,16 +690,16 @@ export default function LodziarniaPistacja() {
         </section>
 
         {/* 4. MENU (zajawka) */}
-        <section aria-labelledby="menu-title" className="bg-blueberry-50">
+        <section aria-labelledby="menu-title" className="bg-pistachio-50">
           <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
             <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
               <div>
-                <h2 id="menu-title" className="font-display text-3xl font-bold text-blueberry-700 sm:text-4xl">
+                <h2 id="menu-title" className="font-display text-3xl font-bold text-pistachio-700 sm:text-4xl">
                   Co u nas zjesz
                 </h2>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {["Lody", "Gofry", "Kawa"].map((item) => (
-                    <span key={item} className="rounded-full bg-blueberry-100 px-4 py-2 font-semibold text-blueberry-800">
+                    <span key={item} className="rounded-full bg-pistachio-100 px-4 py-2 font-semibold text-pistachio-700">
                       {item}
                     </span>
                   ))}
@@ -766,9 +765,9 @@ export default function LodziarniaPistacja() {
         </section>
 
         {/* 6. O NAS */}
-        <section aria-labelledby="about-title" className="bg-raspberry-50">
+        <section aria-labelledby="about-title" className="bg-pistachio-50">
           <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-16">
-            <h2 id="about-title" className="font-display text-3xl font-bold text-raspberry-700 sm:text-4xl">
+            <h2 id="about-title" className="font-display text-3xl font-bold text-pistachio-700 sm:text-4xl">
               O nas
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink">
@@ -776,7 +775,7 @@ export default function LodziarniaPistacja() {
               o świeżych, naturalnych lodach i miłej obsłudze, którą klienci doceniają
               w opiniach.
             </p>
-            <p className="mt-4 rounded-xl border border-dashed border-raspberry-200 bg-white px-4 py-3 text-ink-muted">
+            <p className="mt-4 rounded-xl border border-dashed border-pistachio-200 bg-white px-4 py-3 text-ink-muted">
               [Krótka historia marki do uzupełnienia z właścicielem — kto prowadzi,
               od kiedy, co was wyróżnia.]
             </p>
