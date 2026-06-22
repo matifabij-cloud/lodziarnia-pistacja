@@ -105,23 +105,22 @@ const GOOGLE_REVIEWS_URL =
 /**
  * Prawdziwe zdjęcia (pliki w `public/photos/`). Jeśli pliku brakuje, komponent
  * <Photo> sam pokazuje oznaczony placeholder — strona nigdy nie jest „pusta".
- * Wgraj 4 pliki o tych nazwach do public/photos/ (patrz public/photos/README.md).
  */
 const PHOTOS = {
   lodyKubek: {
-    src: "/photos/lody-kubek.jpg",
+    src: "/photos/lody-kubek.jpg.jpg",
     alt: "Lody jagodowe w kubku i lody w rożku z bitą śmietaną na tle budki Pistacja",
   },
   budka: {
-    src: "/photos/budka.jpg",
+    src: "/photos/budka.jpg.webp",
     alt: "Różowa budka Lodziarni Pistacja z neonem i obsługą w oknie",
   },
   gofr: {
-    src: "/photos/gofr.jpg",
+    src: "/photos/gofr.jpg.webp",
     alt: "Gofr z truskawkami, kiwi, gruszką i bitą śmietaną na papierowej tacce",
   },
   lodyRozek: {
-    src: "/photos/lody-rozek.jpg",
+    src: "/photos/lody-rozek.jpg.webp",
     alt: "Lody w rożku — śmietankowe i mango — trzymane przed budką",
   },
 } as const;
@@ -551,8 +550,6 @@ export default function LodziarniaPistacja() {
       <main id="top">
         {/* 1. HERO */}
         <section className="relative overflow-hidden bg-gradient-to-b from-pistachio-600 to-pistachio-700" aria-labelledby="hero-title">
-          <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-pistachio-100/70 blur-2xl" aria-hidden="true" />
-          <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-raspberry-100/60 blur-2xl" aria-hidden="true" />
           <div className="relative mx-auto grid max-w-5xl gap-8 px-4 pb-10 pt-10 sm:px-6 md:grid-cols-2 md:items-center md:gap-10 md:pb-16 md:pt-16">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-semibold text-pistachio-700 shadow-sm ring-1 ring-pistachio-100">
