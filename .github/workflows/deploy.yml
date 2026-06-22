@@ -15,10 +15,11 @@ permissions:
   pages: write
   id-token: write
 
-# Tylko jeden deploy naraz
+# Kolejkuj deploye (nie anuluj w trakcie) — zapobiega błędowi
+# "in progress deployment" przy szybkich kolejnych pushach.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:

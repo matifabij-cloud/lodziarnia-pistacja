@@ -550,7 +550,7 @@ export default function LodziarniaPistacja() {
 
       <main id="top">
         {/* 1. HERO */}
-        <section className="relative overflow-hidden" aria-labelledby="hero-title">
+        <section className="relative overflow-hidden bg-gradient-to-b from-pistachio-600 to-pistachio-700" aria-labelledby="hero-title">
           <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-pistachio-100/70 blur-2xl" aria-hidden="true" />
           <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-raspberry-100/60 blur-2xl" aria-hidden="true" />
           <div className="relative mx-auto grid max-w-5xl gap-8 px-4 pb-10 pt-10 sm:px-6 md:grid-cols-2 md:items-center md:gap-10 md:pb-16 md:pt-16">
@@ -571,16 +571,16 @@ export default function LodziarniaPistacja() {
 
               <h1
                 id="hero-title"
-                className="mt-4 font-display text-4xl font-bold leading-[1.1] text-pistachio-700 sm:text-5xl"
+                className="mt-4 font-display text-4xl font-bold leading-[1.1] text-white sm:text-5xl"
               >
                 Świeże lody, nie sztuczne.
                 <br />
                 Spore porcje.
                 <br />
-                <span className="text-raspberry-600">Trzy budki w Łodzi.</span>
+                <span className="text-cream-200">Trzy budki w Łodzi.</span>
               </h1>
 
-              <p className="mt-4 max-w-md text-lg text-ink-muted">
+              <p className="mt-4 max-w-md text-lg text-pistachio-100">
                 Lody, gofry i kawa na Radogoszczu, w Łagiewnikach i na Retkini.
                 Średnia 4,8★ z ponad 160 opinii w Google — sprawdź, gdzie dziś
                 najbliżej.
@@ -590,7 +590,7 @@ export default function LodziarniaPistacja() {
                 <button
                   type="button"
                   onClick={() => scrollToId("lokalizacje")}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-pistachio-600 px-5 py-3.5 font-semibold text-white shadow-sm outline-none transition-colors duration-200 hover:bg-pistachio-700 focus-visible:ring-2 focus-visible:ring-pistachio-700 focus-visible:ring-offset-2"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3.5 font-semibold text-pistachio-700 shadow-sm outline-none transition-colors duration-200 hover:bg-cream-100 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-pistachio-700"
                 >
                   Zobacz, gdzie dziś zjesz
                   <ArrowRightIcon className="h-5 w-5" />
@@ -598,7 +598,7 @@ export default function LodziarniaPistacja() {
                 <button
                   type="button"
                   onClick={() => requestLocation(true)}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3.5 font-semibold text-pistachio-700 shadow-sm ring-1 ring-pistachio-200 outline-none transition-colors duration-200 hover:bg-pistachio-50 focus-visible:ring-2 focus-visible:ring-pistachio-600"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-transparent px-5 py-3.5 font-semibold text-white ring-2 ring-white/70 outline-none transition-colors duration-200 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-pistachio-700"
                 >
                   <NavIcon className="h-5 w-5" />
                   Najbliższa budka
