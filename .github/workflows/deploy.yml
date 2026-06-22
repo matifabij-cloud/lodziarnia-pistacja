@@ -31,6 +31,9 @@ jobs:
           node-version: "20"
       - run: npm install
       - run: npm run build
+      # SPA fallback (404 -> ta sama strona) + wyłączenie Jekyll na Pages
+      - run: cp dist/index.html dist/404.html
+      - run: touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
