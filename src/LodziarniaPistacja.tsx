@@ -102,25 +102,24 @@ const REVIEWS: Review[] = [
 const GOOGLE_REVIEWS_URL =
   "https://www.google.com/maps/search/?api=1&query=Lodziarnia+Pistacja+%C5%81%C3%B3d%C5%BA";
 
-/**
- * Prawdziwe zdjęcia (pliki w `public/photos/`). Jeśli pliku brakuje, komponent
- * <Photo> sam pokazuje oznaczony placeholder — strona nigdy nie jest „pusta".
- */
+// BASE_URL = ścieżka bazowa builda (np. "/lodziarnia-pistacja/"), żeby zdjęcia
+// z public/ ładowały się poprawnie również pod podkatalogiem GitHub Pages.
+const B = import.meta.env.BASE_URL;
 const PHOTOS = {
   lodyKubek: {
-    src: "/photos/lody-kubek.jpg.jpg",
+    src: `${B}photos/lody-kubek.jpg.jpg`,
     alt: "Lody jagodowe w kubku i lody w rożku z bitą śmietaną na tle budki Pistacja",
   },
   budka: {
-    src: "/photos/budka.jpg.webp",
+    src: `${B}photos/budka.jpg.webp`,
     alt: "Różowa budka Lodziarni Pistacja z neonem i obsługą w oknie",
   },
   gofr: {
-    src: "/photos/gofr.jpg.webp",
+    src: `${B}photos/gofr.jpg.webp`,
     alt: "Gofr z truskawkami, kiwi, gruszką i bitą śmietaną na papierowej tacce",
   },
   lodyRozek: {
-    src: "/photos/lody-rozek.jpg.webp",
+    src: `${B}photos/lody-rozek.jpg.webp`,
     alt: "Lody w rożku — śmietankowe i mango — trzymane przed budką",
   },
 } as const;
