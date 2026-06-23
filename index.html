@@ -20,5 +20,25 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!--
+      Auto-naprawa białego ekranu po nowej publikacji.
+      Gdy przeglądarka ma w cache stary index.html wskazujący na nieistniejący
+      już plik JS (po deployu hash się zmienia), aplikacja się nie montuje.
+      Jeśli po kilku sekundach #root jest pusty, przeładuj RAZ z pominięciem cache.
+    -->
+    <script>
+      (function () {
+        setTimeout(function () {
+          var root = document.getElementById("root");
+          var mounted = window.__APP_MOUNTED__ === true;
+          if (!mounted && root && root.childElementCount === 0) {
+            if (!sessionStorage.getItem("pistacja_reloaded")) {
+              sessionStorage.setItem("pistacja_reloaded", "1");
+              location.reload();
+            }
+          }
+        }, 5000);
+      })();
+    </script>
   </body>
 </html>
