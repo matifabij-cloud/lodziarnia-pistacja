@@ -7,4 +7,17 @@ export default defineConfig({
   // Gwarantuje poprawne ładowanie /assets/... niezależnie od ukośnika na końcu URL.
   base: "/lodziarnia-pistacja/",
   plugins: [react()],
+  build: {
+    // STAŁE nazwy plików (bez zmiennego hasha). Dzięki temu zacache'owany w
+    // przeglądarce index.html zawsze trafia w istniejący /assets/index.js i
+    // /assets/index.css — eliminuje biały ekran (404 na starym pliku) po
+    // każdej nowej publikacji na GitHub Pages.
+    rollupOptions: {
+      output: {
+        entryFileNames: "assets/index.js",
+        chunkFileNames: "assets/[name].js",
+        assetFileNames: "assets/[name][extname]",
+      },
+    },
+  },
 });
